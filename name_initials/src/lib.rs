@@ -7,5 +7,5 @@ pub fn initials(names: Vec<&str>) -> Vec<String> {
             String::from("")
         }
     })
-    .collect()
+    .collect() //.collect::<Vec<String>>()
 }
