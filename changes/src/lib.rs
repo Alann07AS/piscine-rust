@@ -14,7 +14,10 @@ impl Light {
 }
 
 pub fn change_brightness(lights: &mut Vec<Light>, alias: &str, value: u8) {
-    let i = lights.iter().position(|x| x.alias == alias).unwrap();
+    let i = match lights.iter().position(|x| x.alias == alias) {
+        Some(i) => i,
+        None => return,
+    };
     lights[i].brightness = value;
 }
 
