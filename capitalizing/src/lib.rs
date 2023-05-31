@@ -18,9 +18,9 @@ pub fn change_case(input: &str) -> String {
     let mut result = String::from("");
     for ch in input.chars() {
         if ch.is_uppercase() {
-            result += &ch.to_ascii_uppercase().to_string();
-        } else {
             result += &ch.to_ascii_lowercase().to_string();
+        } else {
+            result += &ch.to_ascii_uppercase().to_string();
         }
     }
     result
