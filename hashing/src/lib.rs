@@ -6,14 +6,18 @@ pub fn mean(list: &Vec<i32>) -> f64 {
 
 
 pub fn median(list: &Vec<i32>) -> i32 {
-    let l = list.len();
-    if l%2 == 0 {
-        let r = l/2;
-        (list[r-1]+list[r])/2
-    } else {
-        list[l/2]
+    let mut sorted_list = list.clone();
+    sorted_list.sort();
+
+    let len = sorted_list.len();
+    if len % 2 == 0 { // pair
+        let mid_right = len / 2;
+        let mid_left = mid_right - 1;
+        (sorted_list[mid_left] + sorted_list[mid_right]) / 2
+    } else { // impair
+        sorted_list[len / 2]
     }
-}
+} 
 
 pub fn mode(list: &Vec<i32>) -> i32 {
     let mut map_count = HashMap::new();
