@@ -1,6 +1,7 @@
 use rand::Rng;
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 pub enum Suit {
     Heart,
     Diamond,
@@ -9,6 +10,7 @@ pub enum Suit {
 }
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 pub enum Rank {
     Ace,
     King,
@@ -58,10 +60,10 @@ pub struct Card {
 	pub rank: Rank,
 }
 
-#[derive(PartialEq)]
 pub fn winner_card(card: &Card) -> bool {
     if card.suit == Suit::Spade && card.rank == Rank::Ace {
         true
+    } else {
+        false
     }
-    false
 }
