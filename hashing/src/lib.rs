@@ -8,7 +8,8 @@ pub fn mean(list: &Vec<i32>) -> f64 {
 pub fn median(list: &Vec<i32>) -> i32 {
     let l = list.len();
     if l%2 == 0 {
-        (list[(l/2)-1]+list[(l/2)])/2
+        let r = l/2;
+        (list[r-1]+list[r])/2
     } else {
         list[l/2]
     }
