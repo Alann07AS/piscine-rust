@@ -21,7 +21,7 @@ pub fn median(list: &Vec<i32>) -> i32 {
 
 pub fn mode(list: &Vec<i32>) -> i32 {
     let mut map_count = HashMap::new();
-    list.iter().for_each(|nb| *map_count.entry(nb).or_insert(0)+=1);
+    list.iter().for_each(|nb: &i32| *map_count.entry(nb).or_insert(0)+=1);
     match map_count.iter().max_by_key(|(_, &value)| value) {
         None => 0,
         Some((key, _)) => **key,

@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "edit_distance"
+name = "collect"
 version = "0.1.0"

@@ -8,14 +8,3 @@ pub fn first_subword(mut s: String) -> String {
     };
     s
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = first_subword(2, 2);
-        assert_eq!(result, 4);
-    }
-}

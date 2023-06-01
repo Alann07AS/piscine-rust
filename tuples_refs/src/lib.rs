@@ -13,14 +13,3 @@ pub fn first_name(student: &Student) -> String {
 pub fn last_name(student: &Student) -> String {
     student.2.to_string()
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
