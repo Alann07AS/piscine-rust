@@ -16,9 +16,9 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
     }
 
     // Calculate the distances
-    for i in 1..=source_len {
-        for j in 1..=target_len {
-            let substitution_cost = if source_chars[i - 1] == target_chars[j - 1] {
+    for i in 0..source_len {
+        for j in 0..target_len {
+            let substitution_cost = if source_chars[i] == target_chars[j] {
                 0
             } else {
                 1
