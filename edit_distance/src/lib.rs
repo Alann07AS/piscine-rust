@@ -9,30 +9,32 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
 
     // Initialize the first row and column
     for i in 0..=source_len {
-        distances[i][0] = i;
+        distances[i][0] = i; // Distance entre la sous-chaîne vide de source et les préfixes de target
     }
     for j in 0..=target_len {
-        distances[0][j] = j;
+        distances[0][j] = j; // Distance entre la sous-chaîne vide de target et les préfixes de source
     }
 
     // Calculate the distances
-    for i in 0..source_len {
-        for j in 0..target_len {
-            let substitution_cost = if source_chars[i] == target_chars[j] {
-                0
+    for i in 1..=source_len {
+        for j in 1..=target_len {
+            let substitution_cost = if source_chars[i - 1] == target_chars[j - 1] {
+                0 // Pas de coût de substitution si les caractères sont identiques
             } else {
-                1
+                1 // Coût de substitution de 1 si les caractères sont différents
             };
 
-            distances[i][j] = (distances[i - 1][j] + 1)
-                .min(distances[i][j - 1] + 1)
-                .min(distances[i - 1][j - 1] + substitution_cost);
+            // Mise à jour de la distance en choisissant le coût minimal parmi les trois opérations possibles
+            distances[i][j] = (distances[i - 1][j] + 1) // Coût d'insertion
+                .min(distances[i][j - 1] + 1) // Coût de suppression
+                .min(distances[i - 1][j - 1] + substitution_cost); // Coût de substitution
         }
     }
 
     // Return the Levenshtein distance
-    distances[source_len][target_len]
+    distances[source_len][target_len] // Distance entre les sous-chaînes complètes de source et target
 }
+
 // use std::collections::HashMap;
 
 // pub fn edit_distance(source: &str, target: &str) -> usize {
