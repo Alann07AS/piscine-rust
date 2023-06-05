@@ -15,9 +15,9 @@ pub struct Four {
 
 impl One {
     pub fn get_fourth_layer(&self) -> Option<u16> {
-        self.first_layer?
-        .second_layer?
-        .third_layer?
+        self.first_layer.as_ref()?
+        .second_layer.as_ref()?
+        .third_layer.as_ref()?
         .fourth_layer
     }
 }
