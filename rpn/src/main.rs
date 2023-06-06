@@ -22,11 +22,9 @@ fn rpn(calc: &String) {
 
     let mut last_values: Vec < i64 > = vec![];
 
-    let mut step_count = 0;
 
     calc.into_iter().for_each(|el| {
 
-        step_count += 1;
         if is_err {
             return;
         }
