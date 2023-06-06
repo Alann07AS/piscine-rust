@@ -1,7 +1,7 @@
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct CipherError {
-    validation: bool,
-    expected: String
+    pub validation: bool,
+    pub expected: String
 }
 impl CipherError {
     pub fn new(validation: bool, expected: String) -> CipherError {
