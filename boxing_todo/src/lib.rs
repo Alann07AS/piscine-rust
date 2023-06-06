@@ -53,6 +53,10 @@ impl TodoList {
         })
         .collect();
 
+    if tasks.len() == 0 {
+        return Err(Box::new(ParseErr::Empty));
+    }
+    
     let todo_list = TodoList { title, tasks };
 
         // println!("{:?}", todo_list);
