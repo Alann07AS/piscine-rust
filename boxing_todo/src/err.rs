@@ -11,7 +11,7 @@ pub enum ParseErr {
 // required by error trait
 impl Display for ParseErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Fail to parse todo ")    
+        write!(f, "Fail to parses todo file")    
     }
 }
 
@@ -23,7 +23,7 @@ pub struct ReadErr {
 // required by error trait
 impl Display for ReadErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "Fail to read todo file ")
+        write!(f, "Fail to read todo file")
     }
 }
 
