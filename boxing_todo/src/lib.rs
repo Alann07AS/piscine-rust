@@ -39,7 +39,7 @@ impl TodoList {
         let title = json_data["title"].as_str() 
         .expect("Titre manquant dans le JSON")
         .to_owned();
-        let tasks = json_data["tasks"]
+        let tasks: Vec<Task> = json_data["tasks"]
         .members()
         .map(|task_json| {
             Task {
