@@ -33,6 +33,7 @@ impl TodoList {
         }
 
         let json_data = match json::parse(&contents) {
+            // Err(er) => return Err(Box::new(ParseErr::Malformed(Box::new(ParseErr::Malformed(Box::new(er)))))),
             Err(er) => return Err(Box::new(ParseErr::Malformed(Box::new(er)))),
             Ok(data) => data,
         };
