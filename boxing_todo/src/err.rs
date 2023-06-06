@@ -31,10 +31,11 @@ impl Error for ParseErr {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
             Self::Empty => None,
-            Self::Malformed (err) => Some(err.as_ref()),
+            Self::Malformed(err) => Some(&*err.as_ref() as &(dyn Error + 'static)),
         }
     }
 }
+
 
 impl Error for ReadErr {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
