@@ -1,4 +1,4 @@
-use chrono::{NaiveDate, Datelike, Weekday as wd};
+pub use chrono::{NaiveDate, Datelike, Weekday as wd};
 
 pub fn middle_day(year: i32) -> Option<wd> {
     let date = NaiveDate::from_ymd_opt(year, 1, 1).unwrap();
