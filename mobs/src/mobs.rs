@@ -24,11 +24,20 @@ impl Mob {
             self.members.push(
                 mob.members.pop().unwrap()
             );
+            if mob.members.len() == 0 {
+                self.cities.extend(&mut mob.cities.drain(..));
+                self.wealth += mob.wealth;
+            }
         } else {
             mob.members.push(
                 self.members.pop().unwrap()
             );
+            if self.members.len() == 0 {
+                mob.cities.extend(&mut self.cities.drain(..));
+                mob.wealth += self.wealth;
+            }
         }
+        
     }
     pub fn steal(&mut self, mob: &mut Mob, value: u32) {
         let value = match mob.wealth.checked_sub(value) {
