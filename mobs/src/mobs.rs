@@ -27,6 +27,7 @@ impl Mob {
             if mob.members.len() == 0 {
                 self.cities.extend(&mut mob.cities.drain(..));
                 self.wealth += mob.wealth;
+                mob.wealth = 0;
             }
         } else {
             mob.members.push(
@@ -35,6 +36,7 @@ impl Mob {
             if self.members.len() == 0 {
                 mob.cities.extend(&mut self.cities.drain(..));
                 mob.wealth += self.wealth;
+                self.wealth = 0;
             }
         }
         
