@@ -14,6 +14,10 @@ pub fn expected_variable (to_compare: &str, expected: &str) -> Option<String> {
     ((len_expect - edit_distance(to_compare, expected) as f64)/
     len_expect) * 100.;
 
+    if result_dif < 50. {
+        return None;
+    }
+
     Some(format!(
         "{}%",
         result_dif.round()
