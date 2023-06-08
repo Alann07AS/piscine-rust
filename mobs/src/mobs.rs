@@ -20,8 +20,6 @@ impl Mob {
     pub fn attack(&mut self, mob: &mut Mob) {
         let from: u32 = self.members.iter().fold(0, |acc, m| m.get_score()+acc);
         let to: u32 = mob.members.iter().fold(0, |acc, m| m.get_score()+acc);
-        println!("f_to____{}______{}_____", from, to);
-        println!("LEN_before____{}______{}_____",  self.members.len(),  mob.members.len());
         if from > to {
             mob.members.pop();
             if mob.members.len() == 0 {
@@ -37,8 +35,6 @@ impl Mob {
                 self.wealth = 0;
             }
         }
-        println!("LEN_after____{}______{}_____",  self.members.len(),  mob.members.len());
-        
     }
     pub fn steal(&mut self, mob: &mut Mob, value: u32) {
         let value = match mob.wealth.checked_sub(value) {
