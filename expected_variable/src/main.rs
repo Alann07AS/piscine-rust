@@ -14,6 +14,14 @@ fn main() {
         expected_variable("something", "something_completely_different")
     );
     println!(
+        "{:?}",
+        expected_variable("Dqsd sdsq", "Dqsd sdsq")
+    );
+    println!(
+        "{:?}",
+        expected_variable("Sqdsq-dsqdsq-sdsq", "sqdsq-dsqdsq-sdsq")
+    );
+    println!(
         "{} close to it",
         expected_variable("BenedictCumberbatch", "BeneficialCucumbersnatch").unwrap()
     );
