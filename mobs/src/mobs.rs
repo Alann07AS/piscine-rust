@@ -23,18 +23,14 @@ impl Mob {
         println!("f_to____{}______{}_____", from, to);
         println!("LEN_before____{}______{}_____",  self.members.len(),  mob.members.len());
         if from > to {
-            self.members.push(
-                mob.members.pop().unwrap()
-            );
+            mob.members.pop();
             if mob.members.len() == 0 {
                 self.cities.extend(&mut mob.cities.drain(..));
                 self.wealth += mob.wealth;
                 mob.wealth = 0;
             }
         } else {
-            mob.members.push(
-                self.members.pop().unwrap()
-            );
+            self.members.pop();
             if self.members.len() == 0 {
                 mob.cities.extend(&mut self.cities.drain(..));
                 mob.wealth += self.wealth;
