@@ -18,8 +18,8 @@ impl Mob {
         );
     }
     pub fn attack(&mut self, mob: &mut Mob) {
-        let from = self.members.iter().fold(0, |acc, m| m.get_score()+acc);
-        let to = mob.members.iter().fold(0, |acc, m| m.get_score()+acc);
+        let from: u32 = self.members.iter().fold(0, |acc, m| m.get_score()+acc);
+        let to: u32 = mob.members.iter().fold(0, |acc, m| m.get_score()+acc);
         if from > to {
             self.members.push(
                 mob.members.pop().unwrap()

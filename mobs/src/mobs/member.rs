@@ -29,7 +29,7 @@ impl Member {
             age
         }
     }
-    pub fn get_score(&self) -> u8 {
+    pub fn get_score(&self) -> u32 {
         match &self.role {
             Role::Associate => 1,
             Role::Soldier => 2,
