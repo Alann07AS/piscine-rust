@@ -1,6 +1,7 @@
 pub mod mall;
-pub use mall::*;
 
+
+// pub use mall::*;
 pub use mall::floor;
 pub use floor::store;
 
