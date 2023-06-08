@@ -103,7 +103,7 @@ pub mod floor {
             pub name: String,
             pub square_meters: u64,
             pub employees: Vec<employee::Employee>,
-        }
+        }       
 
         impl Store {
             #[allow(dead_code)]
