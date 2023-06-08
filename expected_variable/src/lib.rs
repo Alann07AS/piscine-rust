@@ -2,7 +2,8 @@ pub use edit_distance::edit_distance;
 
 pub fn expected_variable (to_compare: &str, expected: &str) -> Option<String> {
     if  !to_compare.chars().any(|ch| ch.is_ascii_uppercase()) && 
-        !to_compare.contains("_") {
+        !to_compare.contains("_") || 
+        to_compare.contains(" ") {
             return None;
         }
 
