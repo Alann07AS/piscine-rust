@@ -111,7 +111,7 @@ impl<T: Scalar<Item = T> + Clone> Mul for Matrix<T> {
         self.0.iter().enumerate().for_each(|(i, v1)| {
             let v2 = rhs.0[i].to_owned();
             v1.iter().enumerate().for_each(|(i2, t)| {
-                result.0[i][i2] = t.to_owned() / v2[i2].to_owned();
+                result.0[i][i2] = t.to_owned() * v2[i2].to_owned();
             })
         });
         Some(result)
