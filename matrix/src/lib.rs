@@ -36,7 +36,7 @@ impl<T: Scalar<Item = T> + Clone> Add for Matrix<T> {
         {
             return None;
         }
-        let mut result = Self(vec![vec![T::zero(); self.0[0].len()]; self.0.len()]);
+        let mut result = Matrix::zero(self.0.len(),self.0[0].len());//Self(vec![vec![T::zero(); self.0[0].len()]; self.0.len()]);
 
         self.0.iter().enumerate().for_each(|(i, v1)| {
             let v2 = rhs.0[i].to_owned();
