@@ -95,7 +95,7 @@ impl<T: Scalar<Item = T> + Clone> Matrix<T> {
 	}
 }
 
-impl<T: Scalar<Item = T> + Clone> Mul for Matrix<T> {
+impl<T: Scalar<Item = T> + Clone + Copy> Mul for Matrix<T> {
     type Output = Option<Matrix<T>>;
     fn mul(self, rhs: Self) -> Self::Output {
         if self.0.len() != rhs.0.len() ||
@@ -111,7 +111,12 @@ impl<T: Scalar<Item = T> + Clone> Mul for Matrix<T> {
         self.0.iter().enumerate().for_each(|(i, v1)| {
             let v2 = rhs.0[i].to_owned();
             v1.iter().enumerate().for_each(|(i2, t)| {
-                result.0[i][i2] = t.to_owned() * v2[i2].to_owned();
+                let mut calc_i = 0;
+                result.0[i][i2] = self.row(i).into_iter().fold(T::zero(), |acc, n| {
+                    let r =acc + n * rhs.0[calc_i][i2];
+                    calc_i+=1;
+                    r
+                });
             })
         });
         Some(result)
