@@ -109,11 +109,10 @@ impl<T: Scalar<Item = T> + Clone + Copy> Mul for Matrix<T> {
         let mut result =  Matrix::zero(self.0.len(),self.0[0].len());//Self(vec![vec![T::zero(); self.0[0].len()]; self.0.len()]);
 
         self.0.iter().enumerate().for_each(|(i, v1)| {
-            let v2 = rhs.0[i].to_owned();
-            v1.iter().enumerate().for_each(|(i2, t)| {
+            v1.iter().enumerate().for_each(|(i2, _)| {
                 let mut calc_i = 0;
                 result.0[i][i2] = self.row(i).into_iter().fold(T::zero(), |acc, n| {
-                    let r =acc + n * rhs.0[calc_i][i2];
+                    let r = acc + n * rhs.0[calc_i][i2];
                     calc_i+=1;
                     r
                 });
