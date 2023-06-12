@@ -1,7 +1,7 @@
 pub trait Scalar: std::ops::Add<Self, Output = Self>
-                 + std::ops::Sub<Self, Output = Self>
-                 + std::ops::Mul<Self, Output = Self>
-                 + std::ops::Div<Self, Output = Self>
+                + std::ops::Sub<Self, Output = Self>
+                + std::ops::Mul<Self, Output = Self>
+                + std::ops::Div<Self, Output = Self>
 where
     Self: Sized,
 {
@@ -67,7 +67,7 @@ impl Scalar for f32 {
     }
     
     fn one() -> Self::Item {
-         1.0
+        1.0
     }
 }
 
@@ -79,6 +79,6 @@ impl Scalar for f64 {
     }
     
     fn one() -> Self::Item {
-         1.0
+        1.0
     }
 }
