@@ -5,8 +5,9 @@ pub fn counting_words(words: &str) -> HashMap<String, u32> {
 	words.replace(&['(', ')', '“', '”', ',', '\"', '.', ';', '!', ':', '―'][..], "")
 	.replace(" '", "")
 	.replace("' ", "")
+	.to_lowercase()
 		.split_whitespace().into_iter().for_each(|wd| {
-		*la_map.entry(wd.to_string().to_lowercase()).or_insert(0)+=1;
+		*la_map.entry(wd.to_string()).or_insert(0)+=1;
 	});
 	la_map
 }

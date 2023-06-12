@@ -5,7 +5,10 @@ pub struct Message {
 
 impl Message {
     pub fn new(content: String, user: String) -> Message {
-        Message {content, user}
+        Message {
+            content: content,
+            user: user
+        }
     }
     pub fn send_ms(&self) -> Option<&str> {
         let str = self.content.as_str(); 

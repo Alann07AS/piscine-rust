@@ -12,9 +12,9 @@ fn main() {
     // println!("{:?}", list.search("Alice"));
     // println!("{:?}", list.search("someone"));
 
-    println!("removed {:?}", list.rm());
-    println!("list {:?}", list);
-    // list.invert_queue();
+    // println!("removed {:?}", list.rm());
+    // println!("list {:?}", list);
+    list.invert_queue();
     // println!("invert {:?}", list);
 }
 

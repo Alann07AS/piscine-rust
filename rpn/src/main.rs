@@ -3,7 +3,7 @@
 fn main() {
     let args: Vec < String > = std::env::args().collect();
     if args.len() != 2 {
-        print!("{}\n", "Error".to_string());
+        println!("Error");
         return;
     };
 
@@ -12,7 +12,7 @@ fn main() {
 
 fn rpn(calc: &String) {
 
-    let calc: Vec<&str > = calc.split_whitespace().collect();
+    let calc: Vec<&str> = calc.split_whitespace().collect();
 
     let mut count_op_num = (0, 0);
     let mut is_err = false;
@@ -83,10 +83,8 @@ fn rpn(calc: &String) {
         };
     });
 
-    is_err = !(count_op_num.0 + 1 == count_op_num.1);
-
-    if is_err {
-        println!("{}", "Error".to_string());
+    if is_err || count_op_num.0 + 1 != count_op_num.1 {
+        println!("Error");
         return;
     };
     
