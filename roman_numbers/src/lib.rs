@@ -13,7 +13,7 @@ pub enum RomanDigit {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct RomanNumber(pub Vec<RomanDigit>);
+pub struct RomanNumber(pub Vec<RomanDigit>, u32);
 
 impl From<u32> for RomanDigit {
     fn from(value: u32) -> Self {
@@ -135,6 +135,17 @@ impl From<u32> for RomanNumber {
             }
         }
 
-        RomanNumber(digits)
+        RomanNumber(digits, value)
+    }
+}
+
+impl Iterator for RomanNumber {
+    type Item = RomanNumber;
+    fn next(&mut self) -> Option<Self::Item> {
+        let next_val = Self::from(self.1+1);
+        match next_val.0[0] {
+            RomanDigit::Nulla => None,
+            _ => Some(next_val)
+        }
     }
 }
