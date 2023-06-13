@@ -1,1 +1,1 @@
-pub use roman_numbers::RomanNumber;
+pub use roman_numbers::{RomanNumber, RomanDigit};
