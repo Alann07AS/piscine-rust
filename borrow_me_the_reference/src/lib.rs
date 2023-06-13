@@ -14,12 +14,11 @@ fn delete_before(s: &mut String, triger: char) {
 }
 
 pub fn do_operations(v: &mut Vec<String>) {
-    let mut is_sum: bool = false;
+    // let mut is_sum: bool = false;
     // let mut operant: Vec<i32> = vec![];
     for op in v {
         let mut split: Vec<&str> = op.split("+").collect();
-        let mut result: i32 = 0;
-        is_sum = true;
+        let mut is_sum = true;
         if split.len() != 2 {
             split = op.split("-").collect();
             is_sum = false;
@@ -27,11 +26,10 @@ pub fn do_operations(v: &mut Vec<String>) {
         let op1: i32 = split[0].parse().unwrap();
         let op2: i32 = split[1].parse().unwrap();
         if is_sum {
-            result = op1 + op2
+            *op = (op1 + op2).to_string()
         } else {
-            result = op1 - op2
+            *op = (op1 - op2).to_string()
         }
-        *op = result.to_string();
     }
 }
 

@@ -1,3 +1,3 @@
-use std::ops::Mul;
+// use std::ops::Mul;
 
 pub use matrix::Matrix;

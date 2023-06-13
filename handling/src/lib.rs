@@ -1,4 +1,4 @@
-use std::fs::{File, OpenOptions};
+use std::fs::{OpenOptions};
 use std::io::Write;
 
 pub fn open_or_create(file_name: &str, content: &str) {

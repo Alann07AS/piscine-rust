@@ -1,4 +1,4 @@
-use hashing::*;
+// use hashing::*;
 
 fn main() {
 	println!("Hello, world!");

@@ -1,5 +1,5 @@
 use simple_hash::*;
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
 fn main() {
     let sentence = "this is a very basic sentence with only few \
