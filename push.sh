@@ -2,6 +2,6 @@
 
 echo "Enter the commit name:"
 read cname
-git add *
+git add -A
 git commit -m "$cname"
 git push
