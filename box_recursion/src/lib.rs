@@ -21,23 +21,37 @@ impl WorkEnvironment {
     }
 
     pub fn remove_worker(&mut self) -> Option<String> {
-        if self.grade.is_none() {
-            return None;
+        match self.grade.take() {
+            None => None,
+            Some(worker) => {
+                self.grade = worker.next;
+                Some(worker.name)
+            }
         }
-        let name = self.grade.as_mut().unwrap().name.drain(..).collect();
-        self.grade = self.grade.as_mut().unwrap().next.take();
-        return Some(name);
+        // if self.grade.is_none() {
+        //     return None;
+        // }
+        // let name = self.grade.as_mut().unwrap().name.drain(..).collect();
+        // self.grade = self.grade.as_mut().unwrap().next.take();
+        // return Some(name);
     }
 
     pub fn last_worker(&self) -> Option<(String, String)> {
-        if self.grade.is_none() {
-            return None;
+        match self.grade.as_ref() {
+            None => None,
+            Some(worker) => Some(
+                (worker.name.to_owned(), worker.role.to_owned())
+            ),
         }
-        let w = self.grade.as_ref().unwrap();
-        Some((w.name.to_owned(), w.role.to_owned()))
+        // if self.grade.is_none() {
+        //     return None;
+        // }
+        // let w = self.grade.as_ref().unwrap();
+        // Some((w.name.to_owned(), w.role.to_owned()))
     }
 }
 
+#[warn(dead_code)]
 fn check_next_of_next(l: &Link) -> bool {
     !(l.is_none() || l.as_ref().unwrap().next.is_none() || l.as_ref().unwrap().next.as_ref().unwrap().next.is_none())
 }
