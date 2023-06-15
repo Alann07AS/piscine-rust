@@ -22,7 +22,6 @@ impl GameSession {
         }
     }
     pub fn update_score(&mut self, user_name: String) {
-        println!("{:?}", self);
         if self.p1.1 | self.p2.1 == (self.nb_games/2 + 1) {
             return;
         }
@@ -34,6 +33,7 @@ impl GameSession {
             self.p2.1 += 1;
             return;
         }
+        println!("{:?}", self);
     }
     pub fn delete(self) -> String {
         // drop(x)
