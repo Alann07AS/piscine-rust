@@ -11,7 +11,7 @@ pub fn commits_per_week(data: &json::JsonValue) -> HashMap<String, u32> {
         let date = NaiveDateTime::parse_from_str(
             c["commit"]["author"]["date"].as_str().unwrap(),
             "%Y-%m-%dT%H:%M:%SZ"
-        ).unwrap().format("%Y-W%U").to_string();
+        ).unwrap().format("%Y-W%V").to_string();
         *map.entry(date).or_insert(0) += 1;
     });
     map
