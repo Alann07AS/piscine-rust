@@ -22,6 +22,7 @@ impl GameSession {
         }
     }
     pub fn update_score(&mut self, user_name: String) {
+        println!("{:?}", self);
         if self.nb_games == 0  {
             return;
         }
@@ -37,6 +38,7 @@ impl GameSession {
         }
     }
     pub fn delete(self) -> String {
+        // drop(x)
         let s = self;
         format!("game deleted: id -> {}", s.id)
     }
