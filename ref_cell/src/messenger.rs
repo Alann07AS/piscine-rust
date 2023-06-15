@@ -29,13 +29,13 @@ impl<T: Logger> Tracker<'_, T> {
             self.logger.error("Error: you are over your quota!");
         } else if percentage_of_max >= 0.7 {
             self.logger
-                .warning(format!("Warning: you have used up over {}% of your quota! Proceeds with precaution", (percentage_of_max*100.).round()).as_str());
+                .warning(format!("Warning: you have used up over {:.0}% of your quota! Proceeds with precaution", (percentage_of_max*100.)).as_str());
         }
     }
     pub fn peek(&self, value: &Rc<usize> ) { // that will take a peek at how much usage the variable already has. It should write "Info: you are using up to X% of your quota" to the info trait function. X should be replaced with the calculated percentage.
         let percentage_of_max = Rc::strong_count(value) as f64 / self.max as f64;
         self.logger
-            .info(format!("Info: you are using up to {}% of your quota", (percentage_of_max*100.).round()).as_str());
+            .info(format!("Info: you are using up to {:.0}% of your quota", (percentage_of_max*100.)).as_str());
     }
 
 }
