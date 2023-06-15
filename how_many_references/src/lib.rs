@@ -12,9 +12,10 @@ impl Node {
         self.ref_list.push(element);
     }
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        self.ref_list = self.ref_list.drain(..).filter(|r|{
-            element.cmp(&r) != std::cmp::Ordering::Equal
-        }).collect()
+        self.ref_list.retain(|r| !Rc::ptr_eq(r, &element));
+        // self.ref_list = self.ref_list.drain(..).filter(|r|{ //marhe pas parceque enleve tout les as et donc des reference diferente
+            // element.cmp(&r) != std::cmp::Ordering::Equal
+        // }).collect()
     }
     // pub fn rm_all_ref(&mut self, element: Rc<String>) {
     //     let mut new_list = Vec::with_capacity(self.ref_list.len());

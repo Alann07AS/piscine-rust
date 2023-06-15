@@ -19,26 +19,6 @@ impl WorkEnvironment {
     pub fn add_worker(&mut self, role: String, name: String) {
         self.grade = Some(Box::new(Worker { role, name, next: self.grade.take() }))
     }
-    pub fn remove_first_worker(&mut self) -> Option<String> {
-        let mut w: &mut Link = &mut self.grade;
-        if w.is_none() {
-            return None;
-        }
-        if w.as_ref().unwrap().next.is_none() {
-            let name = w.as_ref().unwrap().name.to_owned();
-            self.grade = None;
-            return Some(name);
-        }
-        loop {
-            if check_next_of_next(w) {
-                w = &mut w.as_mut().unwrap().next
-            } else {
-                let name = w.as_ref().unwrap().next.as_ref().unwrap().name.to_owned();
-                w.as_mut().unwrap().next = None;
-                break Some(name);
-            }
-        }
-    }
 
     pub fn remove_worker(&mut self) -> Option<String> {
         if self.grade.is_none() {
@@ -61,3 +41,24 @@ impl WorkEnvironment {
 fn check_next_of_next(l: &Link) -> bool {
     !(l.is_none() || l.as_ref().unwrap().next.is_none() || l.as_ref().unwrap().next.as_ref().unwrap().next.is_none())
 }
+
+// pub fn remove_first_worker(&mut self) -> Option<String> {
+//     let mut w: &mut Link = &mut self.grade;
+//     if w.is_none() {
+//         return None;
+//     }
+//     if w.as_ref().unwrap().next.is_none() {
+//         let name = w.as_ref().unwrap().name.to_owned();
+//         self.grade = None;
+//         return Some(name);
+//     }
+//     loop {
+//         if check_next_of_next(w) {
+//             w = &mut w.as_mut().unwrap().next
+//         } else {
+//             let name = w.as_ref().unwrap().next.as_ref().unwrap().name.to_owned();
+//             w.as_mut().unwrap().next = None;
+//             break Some(name);
+//         }
+//     }
+// }
