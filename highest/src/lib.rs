@@ -27,8 +27,10 @@ impl Numbers<'_> {
     }
 
     pub fn highest_three(&self) -> Vec<u32> {
-        let mut clone = self.numbers.clone().to_owned();
+        let mut clone = self.numbers.to_owned();
         clone.sort();
-        Vec::from(&clone[(clone.len().saturating_sub(3))..])
+        let mut result = Vec::from(&clone[(clone.len().saturating_sub(3))..]);
+        result.reverse();
+        result
     }
 }
