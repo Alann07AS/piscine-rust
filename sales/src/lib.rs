@@ -32,7 +32,7 @@ impl Cart {
 
         self.receipt = self.items.iter().map(|(_, item_price)| {
             ((item_price * ratio_promo) * 100.).round() / 100.
-        }).collect();
+        }).collect::<Vec<f32>>();
 
         self.receipt.clone()
     }
