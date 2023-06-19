@@ -8,11 +8,7 @@ impl Iterator for Collatz {
     fn next(&mut self) -> Option<Self::Item> {
         let current_value = *self;
         if self.v == 1 {
-            self.v = 0;
             return None;
-        }
-        if self.v == 1 {
-            return Some(current_value);
         }
         if self.v % 2 == 0 {
             self.v /= 2;
