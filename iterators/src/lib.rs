@@ -9,13 +9,12 @@ impl Iterator for Collatz {
         if self.v < 2 {
             None
         } else {
-            Some(Collatz::new(
-                if self.v%2 == 0 {
-                    self.v / 2
-                } else {
-                    self.v * 3 + 1
-                }
-            ))
+            if self.v%2 == 0 {
+                self.v = self.v / 2
+            } else {
+                self.v = self.v * 3 + 1
+            }
+            Some(Collatz::new(self.v))
         }
     }
 }
