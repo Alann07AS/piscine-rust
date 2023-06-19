@@ -6,44 +6,40 @@ pub struct Collatz {
 impl Iterator for Collatz {
     type Item = Collatz;
     fn next(&mut self) -> Option<Self::Item> {
-            println!("Collatz value before next: {}", self.v);
-            let t = if self.v < 2 {
-                None
-            } else {
-                if self.v%2 == 0 {
-                    self.v = self.v / 2
-                } else {
-                    self.v = self.v * 3 + 1
-                }
-                Some(Collatz::new(
-                    self.v
-                ))
-            };
-            println!("Collatz value after next: {}", self.v);
-            t
+        let current_value = *self;
+        if self.v == 1 {
+            self.v = 0;
+            return None;
+        }
+        if self.v == 1 {
+            return Some(current_value);
+        }
+        if self.v % 2 == 0 {
+            self.v /= 2;
+        } else {
+            self.v = self.v * 3 + 1;
+        }
+        Some(current_value)
     }
 }
 
+
+
 impl Collatz {
 	pub fn new(n: u64) -> Self {
-        println!("New Collatz value: {}", n);
         Collatz { v: n }
     }
 }
 
 pub fn collatz(n: u64) -> usize {
-    let mut n = Collatz::new(n);
+    Collatz::new(n).count()
+    // let mut n = Collatz::new(n);
 
-    for x in n {
-        print!("{:?}", x)
-    }
-
-    let mut cp = 0;
-    
-    while n.next().is_some() {
-        cp += 1;
-    }
-    cp
+    // let mut cp = 0;
+    // while n.next().is_some() {
+    //     cp += 1;
+    // }
+    // cp
 }
 
 // let log = []
