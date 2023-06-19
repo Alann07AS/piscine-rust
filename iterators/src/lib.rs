@@ -10,13 +10,13 @@ impl Iterator for Collatz {
             let t = if self.v < 2 {
                 None
             } else {
-                if self.v%2 == 0 {
-                    self.v = self.v / 2
-                } else {
-                    self.v = self.v * 3 + 1
-                }
+
                 Some(Collatz::new(
-                    self.v
+                    if self.v%2 == 0 {
+                        self.v / 2
+                    } else {
+                        self.v * 3 + 1
+                    }
                 ))
             };
             println!("Collatz value after next: {}", self.v);
@@ -35,7 +35,9 @@ pub fn collatz(n: u64) -> usize {
     let mut n = Collatz::new(n);
 
     let mut cp = 0;
+    
     while n.next().is_some() {
+        n = n.next().unwrap();
         cp += 1;
     }
     cp
