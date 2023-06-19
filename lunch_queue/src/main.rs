@@ -8,14 +8,14 @@ fn main() {
     list.add(String::from("Alice"), 35);
     println!("{:?}", list);
 
-    // println!("{:?}", list.search("Marie"));
-    // println!("{:?}", list.search("Alice"));
-    // println!("{:?}", list.search("someone"));
+    println!("{:?}", list.search("Marie"));
+    println!("{:?}", list.search("Alice"));
+    println!("{:?}", list.search("someone"));
 
-    // println!("removed {:?}", list.rm());
-    // println!("list {:?}", list);
+    println!("removed {:?}", list.rm());
+    println!("list {:?}", list);
     list.invert_queue();
-    // println!("invert {:?}", list);
+    println!("invert {:?}", list);
 }
 
 // $ cargo run

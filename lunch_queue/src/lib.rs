@@ -21,53 +21,79 @@ impl Queue {
         self.node =  Box::new(Some(Person { discount, name, next_person: Box::new(self.node.take()) }));
     }
     pub fn invert_queue(&mut self) {
-        let mut node: &Link= &self.node;
-        let mut ref_list: Vec<&Link> = vec![];
-        while check_next(node) {
-            ref_list.push(&node);
-            node = &node.as_ref().as_ref().unwrap().next_person;
+        let mut head = self.node.take();
+        let mut prev = None;
+        while let Some(mut node) = head {
+            let next = node.next_person.take();
+            *node.next_person = prev;
+            prev = Some(node);
+            head = next;
         }
-        let mut rev_ref_list = ref_list.clone();
-        rev_ref_list.reverse();
-        ref_list.into_iter().for_each(|n| {
-            n.as_mut().unwrap().next_person = rev_ref_list.pop().unwrap().take();
-        })
+        *self.node = prev;
     }
-    pub fn rm(&mut self) -> Option<(String, i32)> {
-        let mut node: &mut Link= &mut self.node;
-        // let mut link_before: &mut Link= &mut None;
-        loop  {
-            if check_next(&node) && !check_next(&node.as_ref().as_ref().unwrap().next_person) {
-                let p = node.as_mut().as_mut().unwrap();
-                let p_next = p.next_person.as_mut().as_mut().unwrap(); 
-                let data = (p_next.name.clone(), p_next.discount);
-                p.next_person = Box::new(None);
-                return Some(data);
-            } else {
-                node = &mut node.as_mut().as_mut().unwrap().next_person;
-            }
 
-        }
+    pub fn rm(&mut self) -> Option<(String, i32)> {
+        self.invert_queue();
+        let result = match self.node.as_ref() {
+            None => None,
+            Some(n) => Some((n.name.clone(), n.discount))
+        };
+        *self.node = self.node.as_mut().as_mut().unwrap().next_person.take();
+        self.invert_queue();
+        result
+        // let mut node: &mut Link= &mut self.node;
+        // // let mut link_before: &mut Link= &mut None;
+        // loop  {
+        //     if check_next(&node) && !check_next(&node.as_ref().as_ref().unwrap().next_person) {
+        //         let p = node.as_mut().as_mut().unwrap();
+        //         let p_next = p.next_person.as_mut().as_mut().unwrap(); 
+        //         let data = (p_next.name.clone(), p_next.discount);
+        //         p.next_person = Box::new(None);
+        //         return Some(data);
+        //     } else {
+        //         node = &mut node.as_mut().as_mut().unwrap().next_person;
+        //     }
+
+        // }
     }
     pub fn search(&self, name: &str) -> Option<(String, i32)> {
-        let mut node:  &Link= &self.node;
-        // let mut link_before: &mut Link= &mut None;
-        loop  {
-            if node.is_some() {
-                let p = &node.unwrap();
-                if p.name == name {
-                    return Some((name.to_owned(), p.discount));
-                }
-            }
-            if check_next(&node)  {
-                node = &node.as_ref().as_ref().unwrap().next_person;
-            } else {
-                return None;
-            }
 
+        recu_search(&self.node, name)
+        // let mut node:  &Link= &self.node;
+        // // let mut link_before: &mut Link= &mut None;
+        // loop  {
+        //     if node.is_some() {
+        //         let p = &node.unwrap();
+        //         if p.name == name {
+        //             return Some((name.to_owned(), p.discount));
+        //         }
+        //     }
+        //     if check_next(&node)  {
+        //         node = &node.as_ref().as_ref().unwrap().next_person;
+        //     } else {
+        //         return None;
+        //     }
+
+        // }
+    }
+}
+
+fn recu_search(node: &Link, name: &str)-> Option<(String, i32)> {
+    match node.as_ref()  {
+        None => None,
+        Some(node) => {
+            if node.name == name {
+                Some((name.to_owned(), node.discount))
+            } else {
+                recu_search(&node.next_person, name)
+            }
         }
     }
 }
+
+
+
+
 
 fn check_next(l :&Link) -> bool {
     match *l.as_ref().as_ref().unwrap().next_person {
