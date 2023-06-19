@@ -8,4 +8,5 @@ fn main() {
     println!("{:?}", collatz(6));
     println!("{:?}", collatz(7));
     println!("{:?}", collatz(12));
+    println!("{:?}", collatz(400));
 }
