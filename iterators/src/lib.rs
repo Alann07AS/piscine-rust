@@ -1,4 +1,4 @@
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Collatz {
     pub v: u64,
 }
@@ -6,23 +6,27 @@ pub struct Collatz {
 impl Iterator for Collatz {
     type Item = Collatz;
     fn next(&mut self) -> Option<Self::Item> {
-        if self.v < 2 {
-            None
-        } else {
-            if self.v%2 == 0 {
-                self.v = self.v / 2
+            println!("Collatz value before next: {}", self.v);
+            let t = if self.v < 2 {
+                None
             } else {
-                self.v = self.v * 3 + 1
-            }
-            Some(Collatz::new(
-                self.v
-            ))
-        }
+                if self.v%2 == 0 {
+                    self.v = self.v / 2
+                } else {
+                    self.v = self.v * 3 + 1
+                }
+                Some(Collatz::new(
+                    self.v
+                ))
+            };
+            println!("Collatz value after next: {}", self.v);
+            t
     }
 }
 
 impl Collatz {
 	pub fn new(n: u64) -> Self {
+        println!("New Collatz value: {}", n);
         Collatz { v: n }
     }
 }
