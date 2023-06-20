@@ -27,15 +27,16 @@ impl Iterator for ThrowObject {
             return None;
         }
         let next = *self;
-        self.time += 1.;
-
+        
         self.actual_position.y = self.actual_position.y + self.actual_velocity.y - (1./2.) * 9.8;
-
+        
         self.actual_velocity.y = self.actual_velocity.y - 9.8 * self.time;
-
+        
         self.actual_position.x = self.actual_position.x + self.actual_velocity.x + (1./2.) * 9.8;
-
+        
         self.actual_velocity.x = self.actual_velocity.x + 9.8 * self.time;
+        
+        self.time += 1.;
         
         return Some(next);
     }
