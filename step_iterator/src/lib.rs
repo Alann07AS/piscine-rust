@@ -1,23 +1,24 @@
 use std::ops::Add;
 
 #[derive(Debug)]
-pub struct StepIterator<T> {
-    pub beg: T,
-    pub step: T,
+pub struct StepIterator<T: Add> {
+    beg: T, end: T, step: T
 }
 
-impl<T> StepIterator<T> {
-    pub fn new(beg: T, end: T, step: T) -> StepIterator<T> {
-        StepIterator { beg, step }
+impl<T: Add> StepIterator<T> {
+    pub fn new(beg: T, end: T, step: T) -> Self {
+        StepIterator { beg, end, step }
     }
 }
 
-impl<T: Add<Output = T> + Copy> Iterator for StepIterator<T> {
+impl<T: Add<Output = T> + Copy + PartialOrd> std::iter::Iterator for StepIterator<T> {
     type Item = T;
-
     fn next(&mut self) -> Option<Self::Item> {
-        let current = self.beg;
+        let next = self.beg; 
+        if self.beg >= self.end {
+            return None;
+        }
         self.beg = self.beg + self.step;
-        Some(current)
+        Some(next)
     }
 }
