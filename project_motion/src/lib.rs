@@ -33,9 +33,9 @@ impl Iterator for ThrowObject {
 
         self.actual_velocity.y = self.actual_velocity.y - 9.8 * self.time;
 
-        self.actual_position.x = self.actual_position.x + self.actual_velocity.x - (1./2.) * 9.8;
+        self.actual_position.x = self.actual_position.x + self.actual_velocity.x + (1./2.) * 9.8;
 
-        self.actual_velocity.x = self.actual_velocity.x - 9.8 * self.time;
+        self.actual_velocity.x = self.actual_velocity.x + 9.8 * self.time;
         
         return Some(next);
     }
