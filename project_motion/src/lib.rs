@@ -23,21 +23,23 @@ impl ThrowObject {
 impl Iterator for ThrowObject {
     type Item = Self;
     fn next(&mut self) -> Option<Self::Item> {
-        if self.actual_position.y <= 0. {
-            return None;
-        }
+
         let next = *self;
         
-        self.actual_position.y = self.actual_position.y + self.actual_velocity.y - (1./2.) * 9.8;
+        self.actual_position.y = ((self.actual_position.y + self.actual_velocity.y - (1./2.) * 9.8)*100.) .round() / 100.;
         
-        self.actual_velocity.y = self.actual_velocity.y - 9.8 * self.time;
+        self.actual_velocity.y = ((self.actual_velocity.y - 9.8)*100.) .round() / 100.;
         
-        self.actual_position.x = self.actual_position.x + self.actual_velocity.x + (1./2.) * 9.8;
+        self.actual_position.x = ((self.actual_position.x + self.actual_velocity.x)*100.) .round() / 100.;
         
-        self.actual_velocity.x = self.actual_velocity.x + 9.8 * self.time;
+        self.actual_velocity.x = ((self.actual_velocity.x)*100.) .round() / 100.;
         
         self.time += 1.;
-        
-        return Some(next);
+
+        if self.actual_position.y <= 0. {
+            None
+        } else {
+            Some(next)
+        }
     }
 }
