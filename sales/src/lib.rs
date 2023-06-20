@@ -27,7 +27,7 @@ impl Cart {
         let item_sale = self.items.len()/3;
 
         let ratio_promo = 
-        &self.items[item_sale..].iter().fold(0., |acc, f: &(String, f32)| acc + f.1)/
+        &self.items[item_sale..].into_iter().fold(0., |acc, f: &(String, f32)| acc + f.1)/
         &self.items.iter().fold(0., |acc, f| acc + f.1);
 
         self.receipt = self.items.iter().map(|(_, item_price)| {

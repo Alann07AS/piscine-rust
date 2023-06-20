@@ -7,7 +7,7 @@ impl Iterator for Collatz {
     type Item = Collatz;
     fn next(&mut self) -> Option<Self::Item> {
         let current_value = *self;
-        if self.v == 1 {
+        if self.v <= 1 {
             return None;
         }
         if self.v % 2 == 0 {
