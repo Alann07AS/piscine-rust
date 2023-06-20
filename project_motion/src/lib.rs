@@ -24,7 +24,7 @@ impl Iterator for ThrowObject {
     type Item = Self;
     fn next(&mut self) -> Option<Self::Item> {
 
-        let next = *self;
+        // let next = *self;
         
         self.actual_position.y = ((self.actual_position.y + self.actual_velocity.y - (1./2.) * 9.8)*100.) .round() / 100.;
         
@@ -39,7 +39,7 @@ impl Iterator for ThrowObject {
         if self.actual_position.y <= 0. {
             None
         } else {
-            Some(next)
+            Some(self.clone())
         }
     }
 }
