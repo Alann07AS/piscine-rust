@@ -1,14 +1,15 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+pub fn rotate(input: &str, key: i8) -> String {
+    let mut result = String::new();
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+    for c in input.chars() {
+        if c.is_alphabetic() {
+            let base = if c.is_uppercase() { b'A' } else { b'a' };
+            let rotated = ((c as u8 - base + key as u8 + 26) % 26 + base) as char;
+            result.push(rotated);
+        } else {
+            result.push(c);
+        }
     }
+
+    result
 }
