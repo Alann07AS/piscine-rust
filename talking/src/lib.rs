@@ -1,4 +1,5 @@
 pub fn talking(text: &str) -> &str {
+    eprintln!("text = {:?}", text);
     if text.len() == 0 {
         return "Just say something!";
     }
