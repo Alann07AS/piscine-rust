@@ -1,11 +1,12 @@
 pub fn talking(text: &str) -> &str {
     eprintln!("text = {:?}", text);
-    if text.trim().len() == 0 {
+    let text = text.trim();
+    if text.len() == 0 {
         return "Just say something!";
     }
     let is_up = text.chars().all(|ch| !ch.is_ascii_alphabetic() || ch.is_ascii_uppercase())
                     & text.chars().any(|ch| ch.is_ascii_alphabetic());
-    let is_intero = text.trim().ends_with("?");
+    let is_intero = text.ends_with("?");
 
 
     match (is_up, is_intero) {
