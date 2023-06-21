@@ -5,7 +5,7 @@ pub fn talking(text: &str) -> &str {
     }
     let is_up = text.chars().all(|ch| !ch.is_ascii_alphabetic() || ch.is_ascii_uppercase())
                     & text.chars().any(|ch| ch.is_ascii_alphabetic());
-    let is_intero = text.ends_with("?");
+    let is_intero = text.trim().ends_with("?");
 
 
     match (is_up, is_intero) {
