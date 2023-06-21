@@ -8,7 +8,7 @@ pub fn get_diamond(c: char) -> Vec<String> {
         line[(c_nb-i) as usize] = (curent_char + i) as char;
         line[(c_nb+i) as usize] = (curent_char + i) as char;
         result.push(
-            line.into_iter().collect()
+            line[1..].into_iter().collect()
         );
     }
     let mut rev_result = result[..result.len()-1].to_owned();
