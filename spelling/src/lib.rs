@@ -3,24 +3,21 @@ pub fn spell(mut n: u64) -> String {
         return "zero".to_owned()
     }
 
-    let mut result = "".to_string();
+    let mut result = vec![];
     let milion = n/1000000;
     if milion > 0 {
-        result += &unit(milion);
-        result += " ";
-        result += &lvl(n);
-        result += " ";
+        result.push(unit(milion));
+        result.push(lvl(n));
     }
 
     n = n%1000000;
 
     let milier = n/1000;
     if milier > 0 {
-        let m = &transform_100(milier);
+        let m = transform_100(milier);
         if m != "" {
-            result += m;
-            result += " ";
-            result += &lvl(1000);    
+            result.push(m);
+            result.push(lvl(1000));    
         }
     }
 
@@ -28,11 +25,10 @@ pub fn spell(mut n: u64) -> String {
 
     let cent = n/1;
     if cent > 0 {
-        result += &transform_100(cent);
-        result += " ";
+        result.push(transform_100(cent));
     }
 
-    result.trim().to_string()
+    result.join(" ")
 }
 
 pub fn transform_100(n: u64) -> String {
@@ -40,12 +36,10 @@ pub fn transform_100(n: u64) -> String {
     let c = n/100;
     if c > 0 {
         result += &unit(c);
-        result += " ";
         result += &lvl(100);
     }
     let d = &transform_10(n%100);
     if d != "" {
-        result += " ";
         result += d;
     }
     result
