@@ -32,17 +32,17 @@ pub fn spell(mut n: u64) -> String {
 }
 
 pub fn transform_100(n: u64) -> String {
-    let mut result = "".to_string();
+    let mut result = vec![];
     let c = n/100;
     if c > 0 {
-        result += &unit(c);
-        result += &lvl(100);
+        result.push(unit(c)) ;
+        result.push(lvl(100)) ;
     }
-    let d = &transform_10(n%100);
+    let d = transform_10(n%100);
     if d != "" {
-        result += d;
+        result.push(d);
     }
-    result
+    result.join(" ")
 }
 
 pub fn transform_10(n: u64) -> String {
