@@ -21,7 +21,6 @@ pub fn spell(mut n: u64) -> String {
             result += m;
             result += " ";
             result += &lvl(1000);    
-            result += " ";
         }
     }
 
