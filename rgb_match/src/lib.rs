@@ -1,5 +1,5 @@
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, PartialEq)]
 pub struct Color {
     pub r: u8,
     pub g: u8,
@@ -39,14 +39,14 @@ impl Color {
             2 => self.g = second,
             3 => self.b = second,
             4 => self.a = second,
-            _ => {eprintln!("wtf = ");}
+            _ => {}
         }
         match second_i {
             1 => self.r = first,
             2 => self.g = first,
             3 => self.b = first,
             4 => self.a = first,
-            _ => {eprintln!("wtf = ");}
+            _ => {}
 
         }
         self
